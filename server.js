@@ -13,6 +13,6 @@ app.use(express.json());
 app.use("/api/user", userRoute);
 app.use("/api/qr", qrRoute);
 
-app.listen(5000, () => {
-  console.log("Calisiyor port : ", 5000);
+app.listen(process.env.PORT || 5000, () => {
+  console.log("Calisiyor port : ", process.env.PORT || 5000);
 });
