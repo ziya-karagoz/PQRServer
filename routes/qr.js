@@ -61,7 +61,7 @@ qrRoute.post("/scanQr", (req, res) => {
           MessageBlock.findById(qrr.messageBlock).then((messageBlock) => {
             return res
               .status(200)
-              .json({ message: messageBlock.messages, qrOwner, });
+              .json({ message: messageBlock.messages, qrOwner });
           });
         });
     });
@@ -75,7 +75,7 @@ qrRoute.post("/qrEdit", (req, res) => {
       console.log("qrr: ", qrr);
       MessageBlock.findByIdAndUpdate(qrr.messageBlock, {
         $set: {
-          [`messages.${index}.messageOn`]: messageOne,
+          [`messages.${index}.messageOne`]: messageOne,
           [`messages.${index}.messageTwo`]: messageTwo,
         },
       })
