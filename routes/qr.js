@@ -61,22 +61,22 @@ qrRoute.post("/scanQr", (req, res) => {
           MessageBlock.findById(qrr.messageBlock).then((messageBlock) => {
             return res
               .status(200)
-              .json({ message: messageBlock.messages, qrOwner });
+              .json({ message: messageBlock.messages, qrOwner, });
           });
         });
     });
 });
 
 qrRoute.post("/qrEdit", (req, res) => {
-  const { qrId, messageOne, messageTwo } = req.body;
+  const { qrId, messageOne, messageTwo, index } = req.body;
   Qr.findById(qrId)
     .exec()
     .then((qrr) => {
       console.log("qrr: ", qrr);
       MessageBlock.findByIdAndUpdate(qrr.messageBlock, {
         $set: {
-          "messages.0.messageOne": messageOne,
-          "messages.0.messageTwo": messageTwo,
+          [`messages.${index}.messageOn`]: messageOne,
+          [`messages.${index}.messageTwo`]: messageTwo,
         },
       })
         .exec()
