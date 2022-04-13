@@ -61,7 +61,11 @@ qrRoute.post("/scanQr", (req, res) => {
           MessageBlock.findById(qrr.messageBlock).then((messageBlock) => {
             return res
               .status(200)
-              .json({ message: messageBlock.messages, qrOwner });
+              .json({
+                message: messageBlock.messages,
+                qrOwner,
+                qrName: qrr.qrName,
+              });
           });
         });
     });
