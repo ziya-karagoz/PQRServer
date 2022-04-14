@@ -46,7 +46,7 @@ qrRoute.post("/scanQr", (req, res) => {
   let { data } = req.body;
   var id = mongoose.Types.ObjectId(data);
   let qrOwner = "";
-
+  // haha
   Qr.findById(id)
     .exec()
     .then((qrr) => {
@@ -59,13 +59,11 @@ qrRoute.post("/scanQr", (req, res) => {
         })
         .then(() => {
           MessageBlock.findById(qrr.messageBlock).then((messageBlock) => {
-            return res
-              .status(200)
-              .json({
-                message: messageBlock.messages,
-                qrOwner,
-                qrName: qrr.qrName,
-              });
+            return res.status(200).json({
+              message: messageBlock.messages,
+              qrOwner,
+              qrName: qrr.qrName,
+            });
           });
         });
     });
